@@ -12,7 +12,7 @@ namespace DEPI_E_Learning.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Admins",
+                name: "Admins" ,
                 columns: table => new
                 {
                     AdminId = table.Column<int>(type: "int", nullable: false)
