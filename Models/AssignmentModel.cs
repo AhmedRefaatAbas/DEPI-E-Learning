@@ -16,5 +16,6 @@ namespace DEPI_E_Learning.Models
         public virtual ModuleModel Module { get; set; }
 
         public virtual ICollection<SubmissionModel> Submissions { get; set; }
+        public DateOnly Duedate { get; set; }
     }
 }

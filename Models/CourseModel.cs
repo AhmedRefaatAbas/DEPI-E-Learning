@@ -19,6 +19,9 @@ namespace DEPI_E_Learning.Models
         public virtual InstructorModel Instructor { get; set; }
 
         public virtual List<ModuleModel> Modules { get; set; }
-        public virtual List<EnrollmentModel> Enrollments { get; set; }
+        public virtual ICollection<SessionModel> Sessions { get; set; } // Updated to include sessions
     }
 }
+    
+
+    

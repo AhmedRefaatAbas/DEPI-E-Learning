@@ -15,11 +15,18 @@ namespace DEPI_E_Learning.ApplicationDbContexts
                 .HasForeignKey(c => c.InstructorId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            // One-to-many relationship between Course and Module
+            // Define the relationship between Course and Session
+            modelBuilder.Entity<SessionModel>()
+                .HasOne(s => s.Course)
+                .WithMany(c => c.Sessions)
+                .HasForeignKey(s => s.CourseId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // Define the relationship between Session and Module
             modelBuilder.Entity<ModuleModel>()
-                .HasOne(m => m.Course)
-                .WithMany(c => c.Modules)
-                .HasForeignKey(m => m.CourseId)
+                .HasOne(m => m.Session)
+                .WithMany(s => s.Modules)
+                .HasForeignKey(m => m.SessionId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             // One-to-many relationship between Module and Quiz
@@ -58,9 +65,9 @@ namespace DEPI_E_Learning.ApplicationDbContexts
                 .OnDelete(DeleteBehavior.Cascade);
 
             // One-to-many relationship between Course and Enrollment
-            modelBuilder.Entity<EnrollmentModel>()
+            modelBuilder.Entity<SessionModel>()
                 .HasOne(e => e.Course)
-                .WithMany(c => c.Enrollments)
+                .WithMany(c =>c.Sessions)
                 .HasForeignKey(e => e.CourseId)
                 .OnDelete(DeleteBehavior.Cascade);
 
@@ -93,5 +100,6 @@ namespace DEPI_E_Learning.ApplicationDbContexts
         public DbSet<AnswerModel> Answers { get; set; }
         public DbSet<AssignmentModel> Assignments { get; set; }
         public DbSet<SubmissionModel> Submissions { get; set; }
+        public DbSet<SessionModel>  Sessions { get; set; }
     }
 }

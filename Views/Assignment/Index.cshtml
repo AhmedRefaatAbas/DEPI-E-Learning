@@ -1,0 +1,38 @@
+﻿@model IEnumerable<DEPI_E_Learning.Models.AssignmentModel>
+
+@{
+    ViewData["Title"] = "Assignments";
+}
+
+<h2>Assignments</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New Assignment</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Assignment ID</th>
+            <th>Assignment Name</th>
+            <th>Module</th>
+            <th>Due Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var assignment in Model)
+        {
+            <tr>
+                <td>@assignment.AssignmentId</td>
+                <td>@assignment.Title</td>
+                <td>@assignment.Module?.Title</td> 
+                <td>
+                    <a asp-action="Edit" asp-route-id="@assignment.AssignmentId" class="btn btn-warning">Edit</a>
+                    <a asp-action="Details" asp-route-id="@assignment.AssignmentId" class="btn btn-info">Details</a>
+                    <a asp-action="Delete" asp-route-id="@assignment.AssignmentId" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
